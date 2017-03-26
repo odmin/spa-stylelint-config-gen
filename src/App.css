@@ -1,0 +1,119 @@
+code {
+  white-space: pre-wrap;
+}
+
+.App {
+  display: block;
+  max-width: 1450px;
+  min-width: 420px;
+  margin: auto;
+}
+
+.Layout {
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+.Layout > *{
+  display: block;
+  box-sizing: border-box;
+}
+
+.Layout::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.Layout .Layout__col {
+  float: left;
+  padding: 15px;
+}
+
+.Layout__col.Layout__col_2 {
+  width: 50%;
+}
+
+@media (max-width: 1024px) {
+  .Layout__col.Layout__col_2 {
+    width: 100%;
+  }
+}
+
+.Result {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.Steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.Steps > *{
+  box-sizing: border-box;
+}
+
+.Steps .Steps__item {
+  max-width: 45%;
+  min-width: 35%;
+  margin: 0 15px 15px 0;
+  padding: 15px;
+  background: #ebebe4;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Steps .Steps__item:nth-child(2n+2),
+.Steps .Steps__item:last-child {
+  margin-right: 0px;
+}
+
+.Steps .Steps__input {
+  display: none;
+}
+
+.Navigation {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.button {
+  appearance: none;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.button.button_default {
+  background: #fff;
+  border: 1px #8c8cf8 solid;
+}
+
+.button.button_default:hover {
+  background: #ebebe4;
+  box-shadow: 6px 6px 5px 0px rgba(132, 132, 132, 1);
+  border-color: #67677d;
+}
+
+.success {
+  font-weight: 600;
+  color: #11d511;
+}
+
+.warning {
+  font-weight: 600;
+  color: #f4a109;
+}
+
+.error {
+  font-weight: 600;
+  color: #ec1919;
+}

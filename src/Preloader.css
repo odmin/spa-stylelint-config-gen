@@ -1,0 +1,41 @@
+.Preloader{
+	width:146px;
+	margin:auto;
+}
+
+.Preloader .Preloader__item{
+	background-color:rgb(255,255,255);
+	float:left;
+	height:31px;
+	margin-left:17px;
+	width:31px;
+	animation-name:bounce_Preloader;
+	animation-duration:1.4575s;
+	animation-iteration-count:infinite;
+	animation-direction:normal;
+	border-radius:20px;
+}
+
+.Preloader__item.Preloader__item_1{
+	animation-delay:0.2895s;
+}
+
+.Preloader__item.Preloader__item_2{
+	animation-delay:0.6855s;
+}
+
+.Preloader__item.Preloader__item_3{
+	animation-delay:0.8785s;
+}
+
+
+
+@keyframes bounce_Preloader{
+	0%{}
+
+	50%{
+		background-color:rgba(0,0,0,0.44);
+	}
+
+	100%{}
+}

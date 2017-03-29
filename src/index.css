@@ -17,6 +17,10 @@ body {
 .header .header__brand {
   padding: 0 15px;
 }
+.header .header__branddesc {
+  font-size: .9em;
+  font-style: oblique;
+}
 
 .wrapper {
   max-width: 1450px;
@@ -29,3 +33,27 @@ body {
   margin: 0;
   padding: 0;
 }
+
+ .text {
+   color: #272727;
+   margin: .8em 0;
+ }
+
+ .text.text_landing {
+   font-size: 1.5em;
+   margin: .3em 0;
+ }
+
+ .text.text_small {
+   font-size: .8em;
+ }
+
+ .text .text__link {
+   color: #ed143d;
+   text-decoration: none;
+ }
+
+ .text .text__link:hover,
+ .text .text__link:focus {
+   text-decoration: underline;
+ }

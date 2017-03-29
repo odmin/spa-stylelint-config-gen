@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import logo from './logo.svg';
 import axios from 'axios';
 import Preloader from './Preloader.js'
 
@@ -36,13 +37,22 @@ class App extends Component {
     this.setState({ rules: {}, "step": Object.keys(this.state.json)[0] })
   }
 
+  currentStep() {
+    let step = "";
+    if (this.state.step) {
+      step = Object.keys(this.state.json).findIndex(
+        (item) => {
+          if (item.indexOf(this.state.step) > -1) var key = item;
+          return key;
+        }
+      );
+    }
+    return step;
+  }
+
   nextStep() {
     if (this.state.step) {
-      let step = Object.keys(this.state.json).findIndex(
-        /* eslint-disable array-callback-return */
-        (item) => { if (item === this.state.step) return item; }
-        /* eslint-enable */
-      );
+      let step = this.currentStep();
       if (Object.keys(this.state.json).hasOwnProperty(step++)){
         this.setState({step: Object.keys(this.state.json)[step++]});
       }
@@ -88,9 +98,13 @@ class App extends Component {
             )
           }
         }
-      after.push(<footer key={ this.state.step } className="Navigation"><button onClick={ this.nextStep } className="button button_default">Skip step &gt;&gt;</button></footer>);
+      after.push(<footer key={ this.state.step } className="Navigation">
+        <p className="text">Option {this.currentStep()+1} of {Object.keys(this.state.json).length}</p>
+        <button onClick={ this.nextStep } className="button button_default">Skip step &gt;&gt;</button>
+      </footer>);
+      before.push(<p key={this.state.step+"__1"} className="text">Choose one of these examples, that do you like more:</p>);
       if ( this.state.json[step].hasOwnProperty("desc") ){
-        before.push(<p key={this.state.step+"__1"}>{ this.state.json[step].desc }</p>);
+        before.push(<p key={this.state.step+"__2"} className="text text_small">{ this.state.json[step].desc }</p>);
       }
     }
     else {
@@ -133,9 +147,22 @@ class App extends Component {
   render() {
     return(
       <div className="App">
+        <header className="header">
+          <div className="wrapper">
+            <span className="header__brand">
+              <img src={logo} className="Logo" alt="logo" />
+              <span className="header__branddesc">configuration object generator</span>
+            </span>
+          </div>
+        </header>
         <div className="Layout">
+          <div className="Layout__col Layout__col_1">
+            <p className="text text_landing">Smiple build your personal configuration object for <a className="text__link" href="//stylelint.io">stylelint</a></p>
+            <p className="text text_small">You choose one from exemples of code. The generator is building config with rules, based of your preferences. If current display code not actual for you, press [Skip step] button for go to next step.</p>
+          </div>
           <div className="Layout__col Layout__col_2">
             { this.renderResult() }
+            <p className="text">Copy result and paste him into <a className="text__link" href="//stylelint.io/user-guide/configuration/">stylelint configuration object</a> in your project</p>
           </div>
           <div className="Layout__col Layout__col_2">
             { this.state.ready && this.state.hasOwnProperty("step") ? this.renderStep(this.state.step) :

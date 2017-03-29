@@ -31,6 +31,10 @@ code {
   padding: 15px;
 }
 
+.Layout__col.Layout__col_1 {
+  width: 100%;
+}
+
 .Layout__col.Layout__col_2 {
   width: 50%;
 }

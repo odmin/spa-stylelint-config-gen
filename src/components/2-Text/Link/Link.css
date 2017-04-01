@@ -1,0 +1,9 @@
+.root {
+  color: #ed143d;
+  text-decoration: none;
+}
+
+.root:hover,
+.root:focus {
+  text-decoration: underline;
+}

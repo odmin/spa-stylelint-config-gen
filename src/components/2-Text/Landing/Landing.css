@@ -1,0 +1,5 @@
+.root {
+  composes: root from "../Normal/Normal.css";
+  font-size: 1.5em;
+  margin: .3em 0;
+}

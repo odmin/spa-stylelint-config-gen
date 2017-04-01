@@ -1,9 +1,9 @@
-.Preloader{
+.root{
 	width:146px;
 	margin:auto;
 }
 
-.Preloader .Preloader__item{
+.item{
 	background-color:rgb(255,255,255);
 	float:left;
 	height:31px;
@@ -16,15 +16,18 @@
 	border-radius:20px;
 }
 
-.Preloader__item.Preloader__item_1{
+.item_1{
+	composes: item;
 	animation-delay:0.2895s;
 }
 
-.Preloader__item.Preloader__item_2{
+.item_2{
+	composes: item;
 	animation-delay:0.6855s;
 }
 
-.Preloader__item.Preloader__item_3{
+.item_3{
+	composes: item;
 	animation-delay:0.8785s;
 }
 

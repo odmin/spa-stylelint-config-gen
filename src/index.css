@@ -3,57 +3,9 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
-.header {
-  display: block;
-  width: 100%;
-  min-width: 420px;
-  height: 70px;
-  color: #fff;
-  background-color: #000;
-  display: flex;
-  align-items: center;
-}
-
-.header .header__brand {
-  padding: 0 15px;
-}
-.header .header__branddesc {
-  font-size: .9em;
-  font-style: oblique;
-}
-
-.wrapper {
+:global .wrapper {
   max-width: 1450px;
   min-width: 420px;
   width: 100%;
   margin: 0 auto;
 }
-
-.name {
-  margin: 0;
-  padding: 0;
-}
-
- .text {
-   color: #272727;
-   margin: .8em 0;
- }
-
- .text.text_landing {
-   font-size: 1.5em;
-   margin: .3em 0;
- }
-
- .text.text_small {
-   font-size: .8em;
- }
-
- .text .text__link {
-   color: #ed143d;
-   text-decoration: none;
- }
-
- .text .text__link:hover,
- .text .text__link:focus {
-   text-decoration: underline;
- }

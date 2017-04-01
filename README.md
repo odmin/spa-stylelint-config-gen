@@ -2,7 +2,7 @@
 
 Single-page web-browser application
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and eject. In project are used [css modules](https://github.com/css-modules/css-modules).
 
 ## Table of Contents
 

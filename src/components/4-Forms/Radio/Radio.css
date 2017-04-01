@@ -1,0 +1,19 @@
+.root {
+  max-width: 45%;
+  min-width: 35%;
+  margin: 0 15px 15px 0;
+  padding: 15px;
+  background: #ebebe4;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.root:nth-child(2n+2),
+.root:last-child {
+  margin-right: 0px;
+}
+
+.input {
+  display: none;
+}

@@ -1,0 +1,16 @@
+.root {
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+.root > *{
+  display: block;
+  box-sizing: border-box;
+}
+
+.root::after {
+  content: "";
+  display: block;
+  clear: both;
+}

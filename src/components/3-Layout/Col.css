@@ -1,0 +1,20 @@
+.root {
+  float: left;
+  padding: 15px;
+}
+
+.root_1 {
+  composes: root;
+  width: 100%;
+}
+
+.root_2 {
+  composes: root;
+  width: 50%;
+}
+
+@media (max-width: 1024px) {
+  .root_2 {
+    width: 100%;
+  }
+}

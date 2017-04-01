@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
-import logo from './logo.svg';
+import styles from './App.css';
 import axios from 'axios';
-import Preloader from './Preloader.js'
+import Header from './components/1-Header/Header';
+import Small from './components/2-Text/Small/Small';
+import Landing from './components/2-Text/Landing/Landing';
+import Text from './components/2-Text/Normal/Normal';
+import Link from './components/2-Text/Link/Link';
+import Layout from './components/3-Layout/Layout';
+import Col from './components/3-Layout/Col';
+import Textarea from './components/4-Forms/Textarea/Textarea';
+import Radio from './components/4-Forms/Radio/Radio';
+import Button from './components/5-Button/Button';
+import Preloader from './components/6-Preloader/Preloader';
 
 class App extends Component {
 
@@ -80,38 +89,37 @@ class App extends Component {
         for (let val in code) {
           if (code.hasOwnProperty(val)) {
             if (this.state.json[step].hasOwnProperty("html")){
-              html = <code dangerouslySetInnerHTML={ { __html: code[val].toString() } } />
+              html = <code className={ styles.code } dangerouslySetInnerHTML={ { __html: code[val].toString() } } />
             }
             else {
               html = val.toString();
             }
             body.push(
-              <label key={ val } className="Steps__item">
-                <input type="radio"
-                  name={ step }
-                  className="Steps__input"
-                  value={ val }
-                  onChange={ this.modify }
-                  checked={ this.state.rules[step] === val ? true : false } />
+              <Radio key={ val } name={ step }
+                value={ val }
+                onChange={ this.modify }
+                checked={ this.state.rules[step] === val ? true : false }>
                 { html }
-              </label>
+              </Radio>
             )
           }
         }
-      after.push(<footer key={ this.state.step } className="Navigation">
-        <p className="text">Option {this.currentStep()+1} of {Object.keys(this.state.json).length}</p>
-        <button onClick={ this.nextStep } className="button button_default">Skip step &gt;&gt;</button>
+      after.push(<footer key={ this.state.step } className={ styles.navigation }>
+        <Text>Option {this.currentStep()+1} of {Object.keys(this.state.json).length}</Text>
+        <Button onClick={ this.nextStep } BtType="default">Skip step &gt;&gt;</Button>
       </footer>);
-      before.push(<p key={this.state.step+"__1"} className="text">Choose one of these examples, that do you like more:</p>);
+      before.push(<Text key={ this.state.step+"__1" }>Choose one of these examples, that do you like more:</Text>);
       if ( this.state.json[step].hasOwnProperty("desc") ){
-        before.push(<p key={this.state.step+"__2"} className="text text_small">{ this.state.json[step].desc }</p>);
+        before.push(<Small key={ this.state.step+"__2" }>{ this.state.json[step].desc }</Small>);
       }
     }
     else {
       body.push(
         <div key={ body.length+1 }>
-          <p className="success">Your configuration object is ready. Copy content from left panel.</p>
-          <p className="Navigation"><button className="button button_default" onClick={ this.initial }>&#10226; Rebuild</button></p>
+          <p className={ styles.success }>Your configuration object is ready. Copy content from left panel.</p>
+          <p className={ styles.navigation }>
+            <Button onClick={ this.initial } BtType="default">&#10226; Rebuild</Button>
+          </p>
         </div>
       )
     }
@@ -119,7 +127,7 @@ class App extends Component {
     return (
       <div key={ step ? step : body.length+2 }>
         { before }
-        <div className="Steps">
+        <div className={ styles.steps }>
           { body }
         </div>
         { after }
@@ -140,34 +148,35 @@ class App extends Component {
       }
     }
     return (
-      <textarea className="Result" rows="20" cols="30" disabled value={"{\n \"rules\": {\n" + text + "  }\n}"} />
+      <Textarea rows="20" cols="30" disabled="true" value={"{\n \"rules\": {\n" + text + "  }\n}"} />
     );
   }
 
   render() {
     return(
-      <div className="App">
-        <header className="header">
-          <div className="wrapper">
-            <span className="header__brand">
-              <img src={logo} className="Logo" alt="logo" />
-              <span className="header__branddesc">configuration object generator</span>
-            </span>
-          </div>
-        </header>
-        <div className="Layout">
-          <div className="Layout__col Layout__col_1">
-            <p className="text text_landing">Smiple build your personal configuration object for <a className="text__link" href="//stylelint.io">stylelint</a></p>
-            <p className="text text_small">You choose one from exemples of code. The generator is building config with rules, based of your preferences. If current display code not actual for you, press [Skip step] button for go to next step.</p>
-          </div>
-          <div className="Layout__col Layout__col_2">
-            { this.renderResult() }
-            <p className="text">Copy result and paste him into <a className="text__link" href="//stylelint.io/user-guide/configuration/">stylelint configuration object</a> in your project</p>
-          </div>
-          <div className="Layout__col Layout__col_2">
-            { this.state.ready && this.state.hasOwnProperty("step") ? this.renderStep(this.state.step) :
-            this.state.ready ? <div className="error">Error. <a href="#">Report in issue</a></div> : <Preloader /> }
-          </div>
+      <div className={ styles.root }>
+        <Header />
+        <div className={ styles.wrapper }>
+          <Layout>
+            <Col col="1">
+              <Landing>Simply build your personal configuration object for <Link href='//stylelint.io'>stylelint</Link></Landing>
+              <Small>You choose one from exemples of code. The generator is building config with rules, based of your preferences. If current display code not actual for you, press [Skip step] button for go to next step.</Small>
+            </Col>
+            <Col col="2">
+              { this.renderResult() }
+              <Text>
+                Copy result and paste him into <Link href='//stylelint.io/user-guide/configuration/'>stylelint configuration object</Link> in your project
+              </Text>
+            </Col>
+            <Col col="2">
+              { this.state.ready && this.state.hasOwnProperty("step") ? this.renderStep(this.state.step) :
+              this.state.ready ?
+                <div className={ styles.error }>
+                  Error. <Link href='https://github.com/odmin/spa-stylelint-config-gen/issues'>Report in issue</Link>
+                </div>
+              : <Preloader /> }
+            </Col>
+          </Layout>
         </div>
       </div>
     )

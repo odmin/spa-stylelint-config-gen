@@ -1,0 +1,20 @@
+.root {
+  appearance: none;
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.default {
+  composes: root;
+  background: #fff;
+  border: 1px #8c8cf8 solid;
+}
+
+.default:hover {
+  background: #ebebe4;
+  box-shadow: 6px 6px 5px 0px rgba(132, 132, 132, 1);
+  border-color: #67677d;
+}

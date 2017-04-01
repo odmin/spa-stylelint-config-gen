@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import styles from './App.css';
-import axios from 'axios';
-import Header from './components/1-Header/Header';
-import Small from './components/2-Text/Small/Small';
-import Landing from './components/2-Text/Landing/Landing';
-import Text from './components/2-Text/Normal/Normal';
-import Link from './components/2-Text/Link/Link';
-import Layout from './components/3-Layout/Layout';
-import Col from './components/3-Layout/Col';
-import Textarea from './components/4-Forms/Textarea/Textarea';
-import Radio from './components/4-Forms/Radio/Radio';
-import Button from './components/5-Button/Button';
-import Preloader from './components/6-Preloader/Preloader';
+import React, { Component } from "react";
+import styles from "./App.css";
+import axios from "axios";
+import Header from "./components/1-Header/Header";
+import Small from "./components/2-Text/Small/Small";
+import Landing from "./components/2-Text/Landing/Landing";
+import Text from "./components/2-Text/Normal/Normal";
+import Link from "./components/2-Text/Link/Link";
+import Layout from "./components/3-Layout/Layout";
+import Col from "./components/3-Layout/Col";
+import Textarea from "./components/4-Forms/Textarea/Textarea";
+import Radio from "./components/4-Forms/Radio/Radio";
+import Button from "./components/5-Button/Button";
+import Preloader from "./components/6-Preloader/Preloader";
+import Conf from "../node_modules/stylelint-config-standard/index";
 
 class App extends Component {
 
@@ -27,12 +28,21 @@ class App extends Component {
     axios.get(this.props.json)
       .then( res => {
           const rules = JSON.parse(res.request.responseText);
+          let notDefined = {};
+          for (let item in Conf.rules) {
+            if (Object.keys(rules.rules).indexOf(item) === -1) {
+              notDefined[item] = rules.rules[item];
+            }
+          }
           this.setState({json: rules.rules});
           if (typeof res === "object") {
             this.setState({ "step": Object.keys(rules.rules)[0], ready: true })
           }
           else {
             console.error("Input data error: need Object, current - ", typeof this.state.json);
+          }
+          if (Object.keys(notDefined).length > 0) {
+            console.log("Not defined rules in input json: ", notDefined);
           }
         }
       )
@@ -148,7 +158,7 @@ class App extends Component {
       }
     }
     return (
-      <Textarea rows="20" cols="30" disabled="true" value={"{\n \"rules\": {\n" + text + "  }\n}"} />
+      <Textarea rows="20" cols="30" disabled="true" value={"{\n \"extends\": \"stylelint-config-standard\",\n \"rules\": {\n" + text + "  }\n}"} />
     );
   }
 
@@ -156,7 +166,7 @@ class App extends Component {
     return(
       <div className={ styles.root }>
         <Header />
-        <div className={ styles.wrapper }>
+        <div className="wrapper">
           <Layout>
             <Col col="1">
               <Landing>Simply build your personal configuration object for <Link href='//stylelint.io'>stylelint</Link></Landing>
@@ -167,6 +177,9 @@ class App extends Component {
               <Text>
                 Copy result and paste him into <Link href='//stylelint.io/user-guide/configuration/'>stylelint configuration object</Link> in your project
               </Text>
+              <Small>
+                Note: we recommend using <Link href='https://github.com/stylelint/stylelint-config-standard'>stylelint-config-standard</Link> with sensible defaults. You must add it into your dependencies (or delete extends property - not recommended).
+              </Small>
             </Col>
             <Col col="2">
               { this.state.ready && this.state.hasOwnProperty("step") ? this.renderStep(this.state.step) :

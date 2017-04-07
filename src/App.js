@@ -8,10 +8,10 @@ import Text from "./components/2-Text/Normal/Normal";
 import Link from "./components/2-Text/Link/Link";
 import Layout from "./components/3-Layout/Layout";
 import Col from "./components/3-Layout/Col";
-import Textarea from "./components/4-Forms/Textarea/Textarea";
 import Radio from "./components/4-Forms/Radio/Radio";
 import Button from "./components/5-Button/Button";
 import Preloader from "./components/6-Preloader/Preloader";
+import Code from "./components/7-Code/Json";
 import Conf from "../node_modules/stylelint-config-standard/index";
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
           let notDefined = {};
           for (let item in Conf.rules) {
             if (Object.keys(rules.rules).indexOf(item) === -1) {
-              notDefined[item] = rules.rules[item];
+              notDefined[item] = Conf.rules[item];
             }
           }
           this.setState({json: rules.rules});
@@ -146,19 +146,43 @@ class App extends Component {
   }
 
   renderResult(rules) {
-    let text = "";
+    let text = [];
     for (let item in this.state.rules) {
       if (this.state.rules.hasOwnProperty(item)) {
         if (this.state.json[item].type === "string") {
-          text = text + "   \"" + item + "\": \"" + this.state.rules[item] + "\",\n";
+          text.push(<div key={item}>
+            <Code type="key">{"  \"" + item + "\""}</Code>
+            {": "}
+            <Code type="value">{"\"" + this.state.rules[item] + "\""}</Code>
+            { Object.keys(this.state.json).length === text.length + 1 ? "" : "," }
+          </div>);
         }
         else {
-          text = text + "   \"" + item + "\": " + this.state.rules[item] + ",\n";
+          text.push(<span key={item}>
+            <Code type="key">{"  \"" + item + "\""}</Code>
+            {": "}
+            <Code type="value">{"\"" + this.state.rules[item] + "\""}</Code>
+            { Object.keys(this.state.json).length === text.length + 1 ? "" : "," }
+          </span>);
         }
       }
     }
     return (
-      <Textarea rows="20" cols="30" disabled="true" value={"{\n \"extends\": \"stylelint-config-standard\",\n \"rules\": {\n" + text + "  }\n}"} />
+      <pre className={styles.result}>
+        <code>
+          <div>{"{"}</div>
+          <div>
+            <Code type="key">"extends"</Code>:
+            <Code type="value">"stylelint-config-standard"</Code>,
+          </div>
+          <div>
+            <Code type="key">"rules"</Code>: {"{"}
+          </div>
+          {text}
+          <div>{" }"}</div>
+          <div>{"}"}</div>
+        </code>
+      </pre>
     );
   }
 

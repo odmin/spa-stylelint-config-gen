@@ -4,17 +4,17 @@
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: all .25s ease;
+  font-size: 14px;
 }
 
 .default {
   composes: root;
   background: #fff;
-  border: 1px #8c8cf8 solid;
+  color: #272727;
+  border: 1px #a9a9a9 solid;
 }
 
 .default:hover {
   background: #ebebe4;
-  box-shadow: 6px 6px 5px 0px rgba(132, 132, 132, 1);
-  border-color: #67677d;
 }

@@ -9,6 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Description](#description)
 - [Start as local server](#start-as-local-server)
 - [Build for Production](#build-for-production)
+- [Global styles](#global-styles)
 
 ## Description
 
@@ -42,3 +43,13 @@ Use command for build and optimize application files:
 npm run build
 ```
 You can read more about workspace, how to perform common tasks in the most recent version of this guide of create-react-app [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+
+## Global styles
+
+Use this styles for formatting code into input JSON:
+
+* .cssSelector
+* .cssProperty
+* .cssValue
+* .cssComment

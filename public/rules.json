@@ -5,26 +5,35 @@
   		"value": ["always", "never"],
   		"type": "string",
   		"html": {
-  			"always": "a {}\n@media {}",
-  			"never": "a {}\n<mark> </mark>\n@media {}"
+  			"always": "<span class='cssSelector'>a</span> {}\n<span class='cssSelector'>@media</span> {}",
+  			"never": "<span class='cssSelector'>a</span> {}\n<mark> </mark>\n<span class='cssSelector'>@media</span> {}"
   		}
   	},
+    "at-rule-name-case": {
+      "value": ["lower", "upper"],
+      "type": "string",
+      "html": {
+        "lower": "<span class='cssSelector'>@<mark>charset</mark></span> <span class='cssValue'>'UTF-8'</span>;\n<span class='cssSelector'>@<mark>media</mark></span> (min-width: <span class='cssValue'>50em</span>) {}",
+        "upper": "<span class='cssSelector'>@<mark>CHARESET</mark></span> <span class='cssValue'>'UTF-8'</span>;\n<span class='cssSelector'>@<mark>MEDIA</mark></span> (min-width: <span class='cssValue'>50em</span>) {}"
+      },
+      "desc": "Specify lowercase or uppercase for at-rules names."
+    },
   	"color-no-invalid-hex": {
   		"value": [true, false],
   		"type": "boolean",
   		"html": {
-  			"true": "a { \n color: #00 <span class='comment'>/*&#8592; These not a hex color, <mark>print ERROR</mark></span>\n }",
-  			"false": "a { \n color: #00 <span class='comment'>/*&#8592; These not a hex color, <mark>ignore him</mark></span>\n }"
-  		}
+  			"true": "<span class='cssSelector'>a</span> { \n <span class='cssProperty'>color:</span> <span class='cssValue'>#00</span> <span class='cssComment'>/*&#8592; These not a hex color, <mark>print ERROR</mark></span>\n }"
+  		},
+      "desc": "Add notification message, when hex color code is incorrect"
   	},
   	"value-list-comma-space-after": {
   		"value": ["always", "never", "always-single-line", "never-single-line"],
   		"type": "string",
   		"html": {
-  			"always": "a { background-size: 0<mark>, </mark>0; } \na { background-size: 0\n<mark>, </mark>0; }",
-  			"never": "a { background-size: 0<mark>,</mark>0; }\na { background-size: 0\n<mark>,</mark>0; }",
-  			"always-single-line": "a { background-size: 0<mark>, </mark>0; } \na { background-size: 0\n<mark>, </mark>0; }\na { background-size: 0\n<mark>,</mark>0; }\n\n",
-  			"never-single-line": "a { background-size: 0<mark>,</mark>0; }\na { background-size: 0\n<mark>,</mark>0; }\na { background-size: 0\n<mark>, </mark>0; }"
+  			"always": "<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size:</span> <span class='cssValue'>0<mark>, </mark>0</span>; } \n<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size</span>: <span class='cssValue'>0\n<mark>, </mark>0</span>; }",
+  			"never": "<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size:</span> <span class='cssValue'>0<mark>,</mark>0;</span> }\n<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size</span>: <span class='cssValue'>0\n<mark>,</mark>0</span>; }",
+  			"always-single-line": "<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size:</span> <span class='cssValue'>0<mark>, </mark>0</span>; } \n<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size</span>: <span class='cssValue'>0\n<mark>, </mark>0</span>; }\na { <span class='cssProperty'>background-size:</span> <span class='cssValue'>0\n<mark>,</mark>0</span>; }\n\n",
+  			"never-single-line": "<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size:</span> <span class='cssValue'>0<mark>,</mark>0;</span> }\n<span class='cssSelector'>a</span> { <span class='cssProperty'>background-size</span>: <span class='cssValue'>0\n<mark>,</mark>0</span>; }\na { <span class='cssProperty'>background-size:</span> <span class='cssValue'>0\n<mark>, </mark>0</span>; }"
   		},
   		"desc": "Will you have use space before value list in property?"
   	}

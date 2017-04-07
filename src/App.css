@@ -16,6 +16,18 @@
   white-space: pre-wrap;
 }
 
+.result {
+  composes: code;
+  width: 100%;
+  min-height: 150px;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  background: #ebebe4;
+  border: 1px solid #ebebe4;
+  border-radius: 3px;
+}
+
 .steps {
   display: flex;
   justify-content: space-around;

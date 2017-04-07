@@ -1,13 +1,20 @@
 .root {
   display: inline-block;
+  box-sizing: border-box;
   max-width: 45%;
   min-width: 35%;
   margin: 0 15px 15px 0;
   padding: 15px;
-  background: #ebebe4;
-  border-radius: 5px;
   cursor: pointer;
-  box-sizing: border-box;
+  border: 1px solid #ebebe4;
+  border-radius: 5px;
+  background: #ebebe4;
+  transition: box-shadow, border 0.3s ease;
+}
+
+.root:hover {
+  box-shadow: inset 0px 0px 7px 5px rgba(48, 50, 50, 0.1);
+  border-color: #a9a9a9;
 }
 
 .root:nth-child(2n+2),

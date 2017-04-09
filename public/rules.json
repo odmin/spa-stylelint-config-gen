@@ -18,6 +18,36 @@
       },
       "desc": "Specify lowercase or uppercase for at-rules names."
     },
+    "at-rule-name-space-after": {
+      "value": ["always", "always-single-line"],
+  		"type": "string",
+  		"html": {
+        "always": "<span class='cssSelector'>@charset</span><mark> </mark><span class='cssValue'>\"UTF-8\"</span>;\n<span class='cssSelector'>@import</span><mark> </mark>url(<span class='cssValue'>\"x.css\"</span>);\n<span class='cssSelector'>@media</span><mark> </mark>\n(min-width: <span class='cssValue'>700px</span>) {}",
+        "always-single-line": "<span class='cssSelector'>@charset</span><mark> </mark><span class='cssValue'>\"UTF-8\"</span>;\n<span class='cssSelector'>@import</span><mark> </mark>url(<span class='cssValue'>\"x.css\"</span>);\n<span class='cssSelector'>@media</span>\n(min-width: <span class='cssValue'>700px</span>) {}"
+      },
+      "desc": "Require a single space after at-rule names"
+    },
+    "block-closing-brace-empty-line-before": {
+      "value": ["always-multi-line", "never"],
+  		"type": "string",
+  		"html": {
+        "always-multi-line": "<span class='cssSelector'>a</span> {\n  <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>;\n<span class='cssComment'>/* &#8592; */</span>\n}\n<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; }",
+        "never": "<span class='cssSelector'>a</span> {\n  <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>;\n}\n<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; }"
+      },
+      "desc": "Require or disallow an empty line before the closing brace of blocks"
+    },
+    "block-closing-brace-newline-after": {
+      "value": ["always","always-single-line","never-single-line","always-multi-line","never-multi-line"],
+  		"type": "string",
+  		"html": {
+        "always": "<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; <mark>}</mark>\n<span class='cssSelector'>b</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }\n",
+        "always-single-line": "<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>;\n<mark>} <span class='cssSelector'>b</span></mark> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }\n<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; <mark>} </mark>\n<span class='cssSelector'>b</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }\n",
+        "never-single-line": "<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; <mark>}<span class='cssSelector'>b</span></mark> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }\n<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>;\n<mark>} <span class='cssSelector'>b</span></mark> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }",
+        "always-multi-line": "<span class='cssSelector'>a</span> {<span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; }<span class='cssSelector'>b</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }\n<span class='cssSelector'>a</span> {\n  <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; <span class='cssComment'>/* multi-line block */</span>\n<mark>}\n<span class='cssSelector'>b</span></mark> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }",
+        "never-multi-line": "<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>; <mark>} <span class='cssSelector'>b</span></mark> { <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }\n<span class='cssSelector'>a</span> { <span class='cssProperty'>color</span>: <span class='cssValue'>pink</span>;\n<mark>}<span class='cssSelector'>b</span> {</mark> <span class='cssProperty'>color</span>: <span class='cssValue'>red</span>; }"
+      },
+      "desc": "Require a newline or disallow whitespace after the closing brace of blocks"
+    },
   	"color-no-invalid-hex": {
   		"value": [true, false],
   		"type": "boolean",

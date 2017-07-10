@@ -147,25 +147,28 @@ class App extends Component {
 
   renderResult(rules) {
     let text = [];
+    let count = 1;
     for (let item in this.state.rules) {
+      console.log(count, '-', Object.keys(this.state.rules).length)
       if (this.state.rules.hasOwnProperty(item)) {
         if (this.state.json[item].type === "string") {
           text.push(<div key={item}>
             <Code type="key">{"  \"" + item + "\""}</Code>
             {": "}
             <Code type="value">{"\"" + this.state.rules[item] + "\""}</Code>
-            { Object.keys(this.state.json).length === text.length + 1 ? "" : "," }
+            { count === Object.keys(this.state.rules).length ? "" : "," }
           </div>);
         }
         else {
           text.push(<span key={item}>
             <Code type="key">{"  \"" + item + "\""}</Code>
             {": "}
-            <Code type="value">{"\"" + this.state.rules[item] + "\""}</Code>
-            { Object.keys(this.state.json).length === text.length + 1 ? "" : "," }
+            <Code type="value">{this.state.rules[item]}</Code>
+            { count === Object.keys(this.state.rules).length ? "" : "," }
           </span>);
         }
       }
+      count++;
     }
     return (
       <pre className={styles.result}>
